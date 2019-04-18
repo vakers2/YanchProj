@@ -1,0 +1,9 @@
+D:\Projects\VueWeb\Entities\bin\Debug\netcoreapp2.2\Entities.deps.json
+D:\Projects\VueWeb\Entities\bin\Debug\netcoreapp2.2\Entities.dll
+D:\Projects\VueWeb\Entities\bin\Debug\netcoreapp2.2\Entities.pdb
+D:\Projects\VueWeb\Entities\obj\Debug\netcoreapp2.2\Entities.csprojAssemblyReference.cache
+D:\Projects\VueWeb\Entities\obj\Debug\netcoreapp2.2\Entities.csproj.CoreCompileInputs.cache
+D:\Projects\VueWeb\Entities\obj\Debug\netcoreapp2.2\Entities.AssemblyInfoInputs.cache
+D:\Projects\VueWeb\Entities\obj\Debug\netcoreapp2.2\Entities.AssemblyInfo.cs
+D:\Projects\VueWeb\Entities\obj\Debug\netcoreapp2.2\Entities.dll
+D:\Projects\VueWeb\Entities\obj\Debug\netcoreapp2.2\Entities.pdb
