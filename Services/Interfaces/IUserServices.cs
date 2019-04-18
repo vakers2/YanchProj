@@ -13,12 +13,14 @@ namespace Services.Interfaces
 
         List<GetUserViewModel> GetUsers();
 
-        void CreateUser(CreateUserViewModel user);
+        bool CreateUser(CreateUserViewModel user);
 
         void DeleteUser(int id);
 
         void UpdateUser(GetUserViewModel user);
 
         void UpdateUserStatus(int id, UserStatus status);
+
+        bool CheckUser(LogInUserViewModel credentials);
     }
 }

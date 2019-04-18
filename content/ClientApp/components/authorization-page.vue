@@ -8,7 +8,8 @@
             <h4 v-if="!login">Register</h4>
           </v-card-title>
           <v-form>
-            <v-text-field v-model="username" prepend-icon="person" name="Username" label="Username"></v-text-field>
+            <v-text-field v-model="login" prepend-icon="person" name="Login" label="Login"></v-text-field>
+            <v-text-field v-model="name" prepend-icon="person" name="Name" label="Name"></v-text-field>
             <v-text-field
               v-model="password"
               prepend-icon="lock"
@@ -17,12 +18,7 @@
               type="password"
             ></v-text-field>
             <v-card-actions>
-              <v-btn
-                @click="signup()"
-                class="btn btn-primary text-white"
-                large
-                block
-              >{{LoginLabel}}</v-btn>
+              <v-btn @click="signup()" class="btn btn-primary text-white" large block>{{LoginLabel}}</v-btn>
             </v-card-actions>
           </v-form>
         </v-card>
@@ -32,17 +28,37 @@
 </template>
 
 <script>
+import api from '../api'
+
 export default {
   name: 'login',
   computed: {
     LoginLabel: function() {
-      return 'Log in';
+      return this.isLogin ? 'Log in' : 'Sign up'
+    }
+  },
+  methods: {
+    signup() {
+      if (this.isLogin) {
+        var user = {
+          Login: this.login,
+          Name: this.name,
+          Password: this.password
+        }
+        api.authorization.post.registerUser(user)
+      } else {
+        var user = {
+          Login: this.login,
+          Password: this.password
+        }
+      }
     }
   },
   data() {
     return {
-      login: true,
-      username: '',
+      isLogin: true,
+      login: '',
+      name: '',
       password: ''
     };
   }
@@ -60,6 +76,6 @@ export default {
 }
 
 .text-white {
-    color: #ffffff;
+  color: #ffffff;
 }
 </style>

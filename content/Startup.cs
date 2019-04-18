@@ -3,6 +3,7 @@ using DAL;
 using DAL.Interfaces;
 using DAL.Repositories;
 using Entities.Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,12 @@ namespace Vue2Spa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/login");
+                });
+
             // Add framework services.
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -64,6 +71,8 @@ namespace Vue2Spa
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -82,11 +91,16 @@ namespace Vue2Spa
             services.AddScoped<IUserRepository, UserRepository>();
         }
 
-        private void InitializeMapper()
+        private static void InitializeMapper()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<User, GetUserViewModel>());
-            Mapper.Initialize(cfg => cfg.CreateMap<GetUserViewModel, User>());
-            Mapper.Initialize(cfg => cfg.CreateMap<CreateUserViewModel, User>());
+            Mapper.Initialize(
+                cfg =>
+                {
+                    cfg.CreateMap<User, GetUserViewModel>();
+                    cfg.CreateMap<GetUserViewModel, User>();
+                    cfg.CreateMap<CreateUserViewModel, User>();
+                }
+            );
         }
     }
 }

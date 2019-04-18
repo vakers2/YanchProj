@@ -20,12 +20,18 @@ namespace Services.Services
             this.userRepository = userRepository;
         }
 
-        public void CreateUser(CreateUserViewModel user)
+        public bool CreateUser(CreateUserViewModel user)
         {
+            if (userRepository.GetUsers().Exists(x => x.Login == user.Login))
+            {
+                return false;
+            }
+
             var newUser = Mapper.Map<CreateUserViewModel, User>(user);
             newUser.Password = UserHelper.ComputePasswordHash(newUser.Password);
-
             userRepository.CreateUser(newUser);
+
+            return true;
         }
 
         public void DeleteUser(int id)
@@ -55,8 +61,23 @@ namespace Services.Services
         public void UpdateUserStatus(int id, UserStatus status)
         {
             var user = userRepository.GetUser(id);
-            user.Status = status;
-            userRepository.UpdateUser(user);
+            if (user != null)
+            {
+                user.Status = status;
+                userRepository.UpdateUser(user);
+            }
+        }
+
+        public bool CheckUser(LogInUserViewModel credentials)
+        {
+            var user = userRepository.GetUser(credentials.Login);
+            if (user != null)
+            {
+                return user.Password == UserHelper.ComputePasswordHash(credentials.Password) &&
+                       (user.Status != UserStatus.Pending || user.Status != UserStatus.Blocked);
+            }
+
+            return false;
         }
     }
 }

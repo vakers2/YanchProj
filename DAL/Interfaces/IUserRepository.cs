@@ -9,6 +9,8 @@ namespace DAL.Interfaces
     {
         User GetUser(int id);
 
+        User GetUser(string login);
+
         List<User> GetUsers();
 
         void CreateUser(User user);

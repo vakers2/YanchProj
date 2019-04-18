@@ -33,6 +33,11 @@ namespace DAL.Repositories
             return context.Users.SingleOrDefault(x => x.UserId == id);
         }
 
+        public User GetUser(string login)
+        {
+            return context.Users.SingleOrDefault(x => x.Login == login);
+        }
+
         public List<User> GetUsers()
         {
             return context.Users.ToList();
