@@ -4,12 +4,12 @@
       <v-container style="position: relative;top: 13%;" class="text-xs-center">
         <v-card class="login-card" flat>
           <v-card-title primary-title>
-            <h4 v-if="login">Login</h4>
-            <h4 v-if="!login">Register</h4>
+            <h4 v-if="isLogin">Login</h4>
+            <h4 v-if="!isLogin">Register</h4>
           </v-card-title>
           <v-form>
             <v-text-field v-model="login" prepend-icon="person" name="Login" label="Login"></v-text-field>
-            <v-text-field v-model="name" prepend-icon="person" name="Name" label="Name"></v-text-field>
+            <v-text-field v-if="!isLogin" v-model="name" prepend-icon="person" name="Name" label="Name"></v-text-field>
             <v-text-field
               v-model="password"
               prepend-icon="lock"
@@ -30,16 +30,21 @@
 <script>
 import api from '../api'
 
+const labels = {
+  login: 'Log in',
+  signup: 'Sign up'
+}
+
 export default {
   name: 'login',
   computed: {
     LoginLabel: function() {
-      return this.isLogin ? 'Log in' : 'Sign up'
+      return this.isLogin ? labels.login : labels.signup
     }
   },
   methods: {
     signup() {
-      if (this.isLogin) {
+      if (!this.isLogin) {
         var user = {
           Login: this.login,
           Name: this.name,
@@ -51,6 +56,7 @@ export default {
           Login: this.login,
           Password: this.password
         }
+        api.authorization.post.logInUser(user)
       }
     }
   },
@@ -65,7 +71,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   width: 500px;
 }

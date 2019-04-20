@@ -21,6 +21,6 @@ namespace Services.Interfaces
 
         void UpdateUserStatus(int id, UserStatus status);
 
-        bool CheckUser(LogInUserViewModel credentials);
+        GetUserViewModel CheckUser(LogInUserViewModel credentials);
     }
 }

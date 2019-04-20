@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.ViewModels;
@@ -25,7 +26,7 @@ namespace Vue2Spa.Controllers
 
         [HttpPost]
         [Route("/user/create")]
-        public IActionResult CreateUser([FromBody]CreateUserViewModel user)
+        public IActionResult Create([FromBody]CreateUserViewModel user)
         {
             if (ModelState.IsValid)
             {
@@ -37,16 +38,16 @@ namespace Vue2Spa.Controllers
 
         [HttpPost]
         [Route("/user/login")]
-        public async Task<IActionResult> LogInUser([FromBody]LogInUserViewModel user)
+        public async Task<IActionResult> LogIn([FromBody]LogInUserViewModel user)
         {
             if (ModelState.IsValid)
             {
                 var validUser = userServices.CheckUser(user);
-                if (validUser)
+                if (validUser != null)
                 {
                     await Authenticate(user.Login);
 
-                    return Ok();
+                    return Ok(validUser);
                 }
 
                 return BadRequest("Login/password is invalid or account is not confirmed");
@@ -55,9 +56,12 @@ namespace Vue2Spa.Controllers
             return BadRequest(ModelState);
         }
 
+        [Authorize]
+        [Route("/user/logout")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
             return Ok();
         }
 

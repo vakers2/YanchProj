@@ -68,16 +68,16 @@ namespace Services.Services
             }
         }
 
-        public bool CheckUser(LogInUserViewModel credentials)
+        public GetUserViewModel CheckUser(LogInUserViewModel credentials)
         {
             var user = userRepository.GetUser(credentials.Login);
-            if (user != null)
+            if (user != null && (user.Password == UserHelper.ComputePasswordHash(credentials.Password) &&
+                (user.Status != UserStatus.Pending || user.Status != UserStatus.Blocked)))
             {
-                return user.Password == UserHelper.ComputePasswordHash(credentials.Password) &&
-                       (user.Status != UserStatus.Pending || user.Status != UserStatus.Blocked);
+                return Mapper.Map<GetUserViewModel>(user);
             }
 
-            return false;
+            return null;
         }
     }
 }
