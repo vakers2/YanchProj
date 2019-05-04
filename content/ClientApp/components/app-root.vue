@@ -21,6 +21,7 @@
 
 <script>
 import NavMenu from './nav-menu';
+import axios from 'axios'
 
 export default {
   components: {

@@ -20,18 +20,18 @@ namespace Services.Services
             this.userRepository = userRepository;
         }
 
-        public bool CreateUser(CreateUserViewModel user)
+        public GetUserViewModel CreateUser(CreateUserViewModel user)
         {
             if (userRepository.GetUsers().Exists(x => x.Login == user.Login))
             {
-                return false;
+                return null;
             }
 
             var newUser = Mapper.Map<CreateUserViewModel, User>(user);
             newUser.Password = UserHelper.ComputePasswordHash(newUser.Password);
             userRepository.CreateUser(newUser);
 
-            return true;
+            return Mapper.Map<GetUserViewModel>(userRepository.GetUser(user.Login));
         }
 
         public void DeleteUser(int id)
@@ -46,6 +46,11 @@ namespace Services.Services
         public GetUserViewModel GetUser(int id)
         {
             return Mapper.Map<User, GetUserViewModel>(userRepository.GetUser(id));
+        }
+
+        public GetUserViewModel GetUser(string login)
+        {
+            return Mapper.Map<User, GetUserViewModel>(userRepository.GetUser(login));
         }
 
         public List<GetUserViewModel> GetUsers()

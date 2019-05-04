@@ -9,7 +9,13 @@
           </v-card-title>
           <v-form>
             <v-text-field v-model="login" prepend-icon="person" name="Login" label="Login"></v-text-field>
-            <v-text-field v-if="!isLogin" v-model="name" prepend-icon="person" name="Name" label="Name"></v-text-field>
+            <v-text-field
+              v-if="!isLogin"
+              v-model="name"
+              prepend-icon="person"
+              name="Name"
+              label="Name"
+            ></v-text-field>
             <v-text-field
               v-model="password"
               prepend-icon="lock"
@@ -28,18 +34,28 @@
 </template>
 
 <script>
-import api from '../api'
+import api from '../../api';
 
 const labels = {
   login: 'Log in',
   signup: 'Sign up'
-}
+};
+
+const actions = {
+  SET_USER_INFO: 'SET_USER_INFO',
+  CLEAR_USER_INFO: 'CLEAR_USER_INFO'
+};
 
 export default {
   name: 'login',
   computed: {
     LoginLabel: function() {
-      return this.isLogin ? labels.login : labels.signup
+      return this.isLogin ? labels.login : labels.signup;
+    }
+  },
+  props: {
+    isLogin: {
+      type: Boolean
     }
   },
   methods: {
@@ -49,20 +65,25 @@ export default {
           Login: this.login,
           Name: this.name,
           Password: this.password
-        }
-        api.authorization.post.registerUser(user)
+        };
+        api.authorization.post.registerUser(user).then(res => {
+          this.$store.commit(actions.SET_USER_INFO, res.data);
+          this.$router.push('/');
+        });
       } else {
         var user = {
           Login: this.login,
           Password: this.password
-        }
-        api.authorization.post.logInUser(user)
+        };
+        api.authorization.post.logInUser(user).then(res => {
+          this.$store.commit(actions.SET_USER_INFO, res.data);
+          this.$router.push('/');
+        });
       }
     }
   },
   data() {
     return {
-      isLogin: true,
       login: '',
       name: '',
       password: ''

@@ -11,9 +11,11 @@ namespace Services.Interfaces
     {
         GetUserViewModel GetUser(int id);
 
+        GetUserViewModel GetUser(string login);
+
         List<GetUserViewModel> GetUsers();
 
-        bool CreateUser(CreateUserViewModel user);
+        GetUserViewModel CreateUser(CreateUserViewModel user);
 
         void DeleteUser(int id);
 

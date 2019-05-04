@@ -3,15 +3,24 @@
     <b-navbar-brand href="#">
       <router-link to="/">Lorem</router-link>
     </b-navbar-brand>
-
-    <b-navbar-nav class="ml-auto">
-      <em>User</em>
+    <router-link to="/create-post" v-if="name"><p class="nav-button">Create post</p></router-link>
+    <b-navbar-nav class="ml-auto dropdown">
+      <b-nav-item-dropdown class="text-white" v-if="name" right>
+        <!-- Using button-content slot -->
+        <template slot="button-content">
+          <em>{{name}}</em>
+        </template>
+        <b-dropdown-item class="text-black" @click="signOut()" href="#"><em>Sign out</em></b-dropdown-item>
+      </b-nav-item-dropdown>
+      <router-link to="/login" v-if="!name">Log in</router-link>
     </b-navbar-nav>
+    <router-link to="/signup" v-if="!name">Sign up</router-link>
   </b-navbar>
 </template>
 
 <script>
 import { routes } from '../router/routes';
+import { mapState } from 'vuex';
 
 export default {
   data() {
@@ -24,7 +33,8 @@ export default {
     toggleCollapsed: function(event) {
       this.collapsed = !this.collapsed;
     }
-  }
+  },
+  computed: mapState(['name'])
 };
 </script>
 
@@ -53,5 +63,22 @@ export default {
 .navbar a {
   text-decoration: none;
   color: #ffffff;
+}
+
+.nav-button {
+  font-size: 0.9em;
+  margin: 0 0 0 1em;
+}
+
+.ml-auto {
+  margin-right: 1em;
+}
+
+.text-white em {
+  color: #ffffff;
+}
+
+.text-black em {
+  color: #000000;
 }
 </style>

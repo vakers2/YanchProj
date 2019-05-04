@@ -10,13 +10,13 @@ const CLEAR_USER_INFO = 'CLEAR_USER_INFO'
 // STATE
 const state = {
   id: '',
-  name: ''
+  name: 'kek'
 }
 
 // MUTATIONS
 const mutations = {
   [SET_USER_INFO] (state, obj) {
-    state.id = obj.id
+    state.id = obj.userId
     state.name = obj.name
   },
   [CLEAR_USER_INFO] (state) {

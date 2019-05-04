@@ -26,46 +26,52 @@ namespace Vue2Spa.Controllers
 
         [HttpPost]
         [Route("/user/create")]
-        public IActionResult Create([FromBody]CreateUserViewModel user)
+        public IActionResult Create([FromBody]CreateUserViewModel newUser)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return userServices.CreateUser(user) ? (IActionResult) Ok() : BadRequest("This login already exists");
+                return BadRequest(ModelState);
             }
 
-            return BadRequest(ModelState);
+            var user = userServices.CreateUser(newUser);
+            if (user == null)
+            {
+                return BadRequest("This login already exists");
+            }
+
+            return Ok(user);    
         }
 
         [HttpPost]
         [Route("/user/login")]
-        public async Task<IActionResult> LogIn([FromBody]LogInUserViewModel user)
+        public async Task<IActionResult> LogInAsync([FromBody]LogInUserViewModel user)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var validUser = userServices.CheckUser(user);
-                if (validUser != null)
-                {
-                    await Authenticate(user.Login);
+                return BadRequest(ModelState);
+            }
 
-                    return Ok(validUser);
-                }
-
+            var validUser = userServices.CheckUser(user);
+            if (validUser == null)
+            {
                 return BadRequest("Login/password is invalid or account is not confirmed");
             }
 
-            return BadRequest(ModelState);
+            await AuthenticateAsync(user.Login);
+
+            return Ok(validUser);
         }
 
         [Authorize]
         [Route("/user/logout")]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> LogoutAsync()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             return Ok();
         }
 
-        private async Task Authenticate(string login)
+        private async Task AuthenticateAsync(string login)
         {
             var claims = new List<Claim>
             {
