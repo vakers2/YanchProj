@@ -14,5 +14,3 @@ D:\Projects\VueWeb\Services\bin\Debug\netcoreapp2.2\Models.pdb
 D:\Projects\VueWeb\Services\bin\Debug\netcoreapp2.2\DAL.pdb
 D:\Projects\VueWeb\Services\bin\Debug\netcoreapp2.2\Entities.pdb
 D:\Projects\VueWeb\Services\obj\Debug\netcoreapp2.2\Services.csproj.CopyComplete
-D:\Projects\VueWeb\Services\bin\Debug\netcoreapp2.2\Microsoft.EntityFrameworkCore.SqlServer.dll
-D:\Projects\VueWeb\Services\bin\Debug\netcoreapp2.2\Microsoft.EntityFrameworkCore.SqlServer.xml
