@@ -12,14 +12,14 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env ASPNETCORE_ENVIRONMENT=Development NODE_ENV=development dotnet run",
-    "build": "npm run build-vendor:prod && npm run build:prod",
-    "build:prod": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "build-vendor:prod": "cross-env NODE_ENV=production webpack --config webpack.config.vendor.js --progress",
-    "build-vendor:dev": "cross-env NODE_ENV=development webpack --config webpack.config.vendor.js --progress",
-    "lint": "eslint -c ./.eslintrc.js ClientApp/**/*.js  ClientApp/**/*.vue  ClientApp/**/*.json webpack*.js",
-    "install": "npm run build-vendor:dev",
-    "update-packages": "npx npm-check -u"
+    "dev": "cd content && cross-env ASPNETCORE_ENVIRONMENT=Development NODE_ENV=development dotnet run",
+    "build": "cd content && npm run build-vendor:prod && npm run build:prod",
+    "build:prod": "cd content && cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build-vendor:prod": "cd content && cross-env NODE_ENV=production webpack --config webpack.config.vendor.js --progress",
+    "build-vendor:dev": "cd content && cross-env NODE_ENV=development webpack --config webpack.config.vendor.js --progress",
+    "lint": "cd content && eslint -c ./.eslintrc.js ClientApp/**/*.js  ClientApp/**/*.vue  ClientApp/**/*.json webpack*.js",
+    "install": "cd content && npm run build-vendor:dev",
+    "update-packages": "cd content && npx npm-check -u"
   },
   "dependencies": {
     "axios": "^0.18.0",
