@@ -9,6 +9,10 @@
   "repository": {
     "url": "https://github.com/TrilonIO/aspnetcore-Vue-starter"
   },
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.3.0"
+  },
   "license": "MIT",
   "scripts": {
     "dev": "cross-env ASPNETCORE_ENVIRONMENT=Development NODE_ENV=development dotnet run",
