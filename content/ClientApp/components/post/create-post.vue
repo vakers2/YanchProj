@@ -31,28 +31,7 @@ import api from '../../api';
 export default {
   name: 'create-post',
   methods: {
-    signup() {
-      if (!this.isLogin) {
-        var user = {
-          Login: this.login,
-          Name: this.name,
-          Password: this.password
-        };
-        api.authorization.post.registerUser(user).then(res => {
-          this.$store.commit(actions.SET_USER_INFO, res.data);
-          this.$router.push('/');
-        });
-      } else {
-        var user = {
-          Login: this.login,
-          Password: this.password
-        };
-        api.authorization.post.logInUser(user).then(res => {
-          this.$store.commit(actions.SET_USER_INFO, res.data);
-          this.$router.push('/');
-        });
-      }
-    }
+
   },
   data() {
     return {

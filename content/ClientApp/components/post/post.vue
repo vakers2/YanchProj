@@ -15,7 +15,8 @@
 export default {
   props: {
     post: {
-      type: Object
+      type: Object,
+      required: true
     }
   },
   data() {

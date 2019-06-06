@@ -54,6 +54,13 @@ export default {
     #86a8e7,
     #7f7fd5
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-size: 1.5vw;
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    font-size: 1em;
+  }
 }
 
 .navbar-brand {

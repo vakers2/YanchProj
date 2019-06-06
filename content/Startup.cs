@@ -1,3 +1,4 @@
+using System;
 using AutoMapper;
 using DAL;
 using DAL.Interfaces;
@@ -39,9 +40,11 @@ namespace Vue2Spa
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=Lorem;Trusted_Connection=True;ConnectRetryCount=0";
+            //var connection = @"Server=(localdb)\mssqllocaldb;Database=Lorem;Trusted_Connection=True;ConnectRetryCount=0";
+
+            var connection = Configuration.GetConnectionString("Default");
             services.AddDbContext<Context>
-                (options => options.UseSqlServer(connection, x => x.MigrationsAssembly("DAL")));
+                (options => options.UseNpgsql(connection, x => x.MigrationsAssembly("DAL")));
 
             InitializeServices(services);
             InitializeMapper();
@@ -93,14 +96,12 @@ namespace Vue2Spa
 
         private static void InitializeMapper()
         {
-            Mapper.Initialize(
-                cfg =>
-                {
-                    cfg.CreateMap<User, GetUserViewModel>();
-                    cfg.CreateMap<GetUserViewModel, User>();
-                    cfg.CreateMap<CreateUserViewModel, User>();
-                }
-            );
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<User, GetUserViewModel>();
+                cfg.CreateMap<GetUserViewModel, User>();
+                cfg.CreateMap<CreateUserViewModel, User>();
+            });
         }
     }
 }

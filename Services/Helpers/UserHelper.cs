@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Services
+namespace Services.Helpers
 {
     public static class UserHelper
     {
