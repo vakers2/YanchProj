@@ -12,7 +12,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "cd content && cross-env ASPNETCORE_ENVIRONMENT=Development NODE_ENV=development dotnet run",
+    "dev": "cd content && cross-env ASPNETCORE_ENVIRONMENT=Development NODE_ENV=production dotnet run",
     "build": "cd content && npm run build-vendor:prod && npm run build:prod",
     "build:prod": "cd content && cross-env NODE_ENV=production webpack --progress --hide-modules",
     "build-vendor:prod": "cd content && cross-env NODE_ENV=production webpack --config webpack.config.vendor.js --progress",
