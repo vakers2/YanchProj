@@ -7,7 +7,7 @@ module.exports = () => {
   console.log('Building vendor files for \x1b[33m%s\x1b[0m', process.env.NODE_ENV)
 
   const isDevBuild = !(process.env.NODE_ENV && process.env.NODE_ENV === 'production')
-  
+
   const extractCSS = new MiniCssExtractPlugin({
     filename: 'vendor.css'
   })
