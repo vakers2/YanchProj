@@ -1,5 +1,5 @@
 # Make sure nupkg files don't get pushed to git repo
 **/*.nupkg
 /.vs
-obj/
-bin/
+**/obj
+**/bin
