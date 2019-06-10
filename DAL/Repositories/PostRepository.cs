@@ -18,6 +18,7 @@ namespace DAL.Repositories
 
         public Post CreatePost(Post post)
         {
+            post.PostId = Guid.NewGuid().ToString();
             context.Posts.Add(post);
             context.SaveChanges();
 
@@ -30,7 +31,7 @@ namespace DAL.Repositories
             context.SaveChanges();
         }
 
-        public Post GetPost(int id)
+        public Post GetPost(String id)
         {
             return context.Posts.SingleOrDefault(x => x.PostId == id);
         }

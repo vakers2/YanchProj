@@ -6,7 +6,7 @@ namespace Models.ViewModels.Post
 {
     public class GetPostViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Title { get; set; }
 

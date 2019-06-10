@@ -5,7 +5,7 @@ namespace DAL.Interfaces
 {
     public interface IPostRepository
     {
-        Post GetPost(int id);
+        Post GetPost(string id);
 
         List<Post> GetPosts();
 

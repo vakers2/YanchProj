@@ -9,19 +9,17 @@ namespace Services.Interfaces
 {
     public interface IUserServices
     {
-        GetUserViewModel GetUser(int id);
-
-        GetUserViewModel GetUser(string login);
+        GetUserViewModel GetUser(string id);
 
         List<GetUserViewModel> GetUsers();
 
         GetUserViewModel CreateUser(CreateUserViewModel user);
 
-        void DeleteUser(int id);
+        void DeleteUser(string id);
 
         void UpdateUser(GetUserViewModel user);
 
-        void UpdateUserStatus(int id, UserStatus status);
+        void UpdateUserStatus(string id, UserStatus status);
 
         GetUserViewModel CheckUser(LogInUserViewModel credentials);
     }

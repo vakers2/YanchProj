@@ -22,7 +22,7 @@ namespace Services.Services
             this.postRepository = postRepository;
         }
 
-        public GetPostViewModel CreatePost(CreatePostViewModel post, int ownerId)
+        public GetPostViewModel CreatePost(CreatePostViewModel post, string ownerId)
         {
             var newPost = Mapper.Map<CreatePostViewModel, Post>(post);
             newPost.CreationDate = DateTime.Now;
@@ -31,7 +31,7 @@ namespace Services.Services
             return Mapper.Map<GetPostViewModel>(postRepository.CreatePost(newPost));
         }
 
-        public void DeletePost(int id)
+        public void DeletePost(string id)
         {
             var post = postRepository.GetPost(id);
             if (post != null)
@@ -40,7 +40,7 @@ namespace Services.Services
             }
         }
 
-        public GetPostViewModel GetPost(int id)
+        public GetPostViewModel GetPost(string id)
         {
             return Mapper.Map<Post, GetPostViewModel>(postRepository.GetPost(id));
         }

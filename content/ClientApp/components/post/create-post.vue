@@ -33,7 +33,8 @@ export default {
   methods: {
     createPost: function() {
       if (this.title && this.description) {
-        
+        api.post.post.create(this.title, this.description)
+        this.$router.push('/');
       }
     }
   },

@@ -59,5 +59,22 @@ export default {
         return axios.post('Authorization/LogInAdmin', data)
       }
     }
+  },
+  post: {
+    get: {
+      getAll (data) {
+        return axios.get('post/getall')
+      }
+    },
+    post: {
+      create (title, description) {
+        var data = {
+          title,
+          description
+        }
+
+        return axios.post('post/create', data)
+      }
+    }
   }
 }

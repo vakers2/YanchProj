@@ -35,7 +35,7 @@ namespace Services.Services
             return Mapper.Map<GetUserViewModel>(userRepository.GetUser(user.Login));
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(string id)
         {
             var user = userRepository.GetUser(id);
             if (user != null)
@@ -44,14 +44,9 @@ namespace Services.Services
             }
         }
 
-        public GetUserViewModel GetUser(int id)
+        public GetUserViewModel GetUser(string id)
         {
             return Mapper.Map<User, GetUserViewModel>(userRepository.GetUser(id));
-        }
-
-        public GetUserViewModel GetUser(string login)
-        {
-            return Mapper.Map<User, GetUserViewModel>(userRepository.GetUser(login));
         }
 
         public List<GetUserViewModel> GetUsers()
@@ -64,7 +59,7 @@ namespace Services.Services
             userRepository.UpdateUser(Mapper.Map<GetUserViewModel, User>(user));
         }
 
-        public void UpdateUserStatus(int id, UserStatus status)
+        public void UpdateUserStatus(string id, UserStatus status)
         {
             var user = userRepository.GetUser(id);
             if (user != null)
@@ -76,7 +71,7 @@ namespace Services.Services
 
         public GetUserViewModel CheckUser(LogInUserViewModel credentials)
         {
-            var user = userRepository.GetUser(credentials.Login);
+            var user = userRepository.CheckUser(credentials.Login);
             if (user != null && (user.Password == UserHelper.ComputePasswordHash(credentials.Password) &&
                 (user.Status != UserStatus.Pending || user.Status != UserStatus.Blocked)))
             {

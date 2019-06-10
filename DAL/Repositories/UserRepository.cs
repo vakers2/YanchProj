@@ -18,6 +18,7 @@ namespace DAL.Repositories
 
         public void CreateUser(User user)
         {
+            user.UserId = Guid.NewGuid().ToString();
             context.Users.Add(user);
             context.SaveChanges();
         }
@@ -28,12 +29,12 @@ namespace DAL.Repositories
             context.SaveChanges();
         }
 
-        public User GetUser(int id)
+        public User GetUser(string id)
         {
             return context.Users.SingleOrDefault(x => x.UserId == id);
         }
 
-        public User GetUser(string login)
+        public User CheckUser(string login)
         {
             return context.Users.SingleOrDefault(x => x.Login == login);
         }

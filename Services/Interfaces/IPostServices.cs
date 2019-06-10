@@ -10,13 +10,13 @@ namespace Services.Interfaces
 {
     public interface IPostServices
     {
-        GetPostViewModel GetPost(int id);
+        GetPostViewModel GetPost(string id);
 
         List<GetPostViewModel> GetPosts();
 
-        GetPostViewModel CreatePost(CreatePostViewModel post, int ownerId);
+        GetPostViewModel CreatePost(CreatePostViewModel post, string ownerId);
 
-        void DeletePost(int id);
+        void DeletePost(string id);
 
         void UpdatePost(GetPostViewModel post);
     }

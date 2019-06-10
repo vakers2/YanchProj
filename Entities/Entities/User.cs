@@ -6,7 +6,8 @@ namespace Entities.Entities
 {
     public class User
     {
-        public int UserId { get; set; }
+        [Key]
+        public string UserId { get; set; }
 
         [Required]
         public string Login { get; set; }

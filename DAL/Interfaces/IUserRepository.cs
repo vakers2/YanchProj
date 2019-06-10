@@ -7,9 +7,9 @@ namespace DAL.Interfaces
 {
     public interface IUserRepository
     {
-        User GetUser(int id);
+        User GetUser(string id);
 
-        User GetUser(string login);
+        User CheckUser(string login);
 
         List<User> GetUsers();
 

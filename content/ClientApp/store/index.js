@@ -10,7 +10,7 @@ const CLEAR_USER_INFO = 'CLEAR_USER_INFO'
 // STATE
 const state = {
   id: '',
-  name: 'kek'
+  name: ''
 }
 
 // MUTATIONS

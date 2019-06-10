@@ -7,9 +7,10 @@ namespace Entities.Entities
 {
     public class Post
     {
-        public int PostId { get; set; }
+        [Key]
+        public string PostId { get; set; }
 
-        public int OwnerId { get; set; }
+        public string OwnerId { get; set; }
 
         [Required]
         public string Title { get; set; }
