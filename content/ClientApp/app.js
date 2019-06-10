@@ -7,6 +7,7 @@ import App from 'components/app-root'
 import { FontAwesomeIcon } from './icons'
 import BootstrapVue from 'bootstrap-vue'
 import Vuetify from 'vuetify'
+import './css/site.css'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
