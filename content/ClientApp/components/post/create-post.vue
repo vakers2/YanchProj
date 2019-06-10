@@ -16,7 +16,7 @@
               auto-grow
             ></v-textarea>
             <v-card-actions>
-              <v-btn @click="signup()" class="btn btn-primary text-white" large block>Create</v-btn>
+              <v-btn @click="createPost()" class="btn btn-primary text-white" large block>Create</v-btn>
             </v-card-actions>
           </v-form>
         </v-card>
@@ -31,7 +31,11 @@ import api from '../../api';
 export default {
   name: 'create-post',
   methods: {
-
+    createPost: function() {
+      if (this.title && this.description) {
+        
+      }
+    }
   },
   data() {
     return {

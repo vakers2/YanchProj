@@ -22,6 +22,10 @@
 import { routes } from '../router/routes';
 import { mapState } from 'vuex';
 
+const actions = {
+  CLEAR_USER_INFO: 'CLEAR_USER_INFO'
+}
+
 export default {
   data() {
     return {
@@ -32,6 +36,10 @@ export default {
   methods: {
     toggleCollapsed: function(event) {
       this.collapsed = !this.collapsed;
+    },
+    signOut: function() {
+      this.$store.commit(actions.CLEAR_USER_INFO);
+      this.$router.push('/');
     }
   },
   computed: mapState(['name'])

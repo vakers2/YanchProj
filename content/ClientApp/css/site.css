@@ -3,6 +3,10 @@
     background: #1e0e40;
 }
 
+.dropdown-menu {
+    position: absolute !important;
+}
+
 .dark { color: #1e0e40; }
 .fuscia { color: #e91e63; }
 
