@@ -12,6 +12,11 @@ export default {
     }
   },
   user: {
+    get: {
+      getAll () {
+        return axios.get('user/getall')
+      }
+    },
     post: {
       updateUser (firstName, lastName, email, phoneNumber) {
         var data = {

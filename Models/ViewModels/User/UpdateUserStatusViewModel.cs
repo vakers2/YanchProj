@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Entities.Enums;
+﻿using Entities.Enums;
 
-namespace Models.ViewModels
+namespace Models.ViewModels.User
 {
     public class UpdateUserStatusViewModel
     {

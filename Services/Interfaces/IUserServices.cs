@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Entities.Entities;
+﻿using System.Collections.Generic;
 using Entities.Enums;
-using Models.ViewModels;
+using Models.ViewModels.User;
 
 namespace Services.Interfaces
 {
@@ -14,6 +11,8 @@ namespace Services.Interfaces
         GetUserViewModel GetUserByLogin(string login);
 
         List<GetUserViewModel> GetUsers();
+
+        List<GetUserAdminViewModel> GetFullUsers();
 
         GetUserViewModel CreateUser(CreateUserViewModel user);
 

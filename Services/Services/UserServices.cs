@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AutoMapper;
-using Models.ViewModels;
 using Services.Interfaces;
 using DAL.Interfaces;
 using Entities.Entities;
 using Entities.Enums;
+using Models.ViewModels.User;
 using Services.Helpers;
 
 namespace Services.Services
@@ -57,6 +55,11 @@ namespace Services.Services
         public List<GetUserViewModel> GetUsers()
         {
             return userRepository.GetUsers().Select(Mapper.Map<User, GetUserViewModel>).ToList();
+        }
+
+        public List<GetUserAdminViewModel> GetFullUsers()
+        {
+            return userRepository.GetUsers().Select(Mapper.Map<User, GetUserAdminViewModel>).ToList();
         }
 
         public void UpdateUser(GetUserViewModel user)

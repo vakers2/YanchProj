@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Models.ViewModels;
+using Models.ViewModels.User;
 using Services.Interfaces;
 
 namespace Vue2Spa.Controllers
@@ -18,6 +18,14 @@ namespace Vue2Spa.Controllers
         public UserController(IUserServices userServices)
         {
             this.userServices = userServices;
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("/user/getall")]
+        public IActionResult GetAllUsers()
+        {
+            return Ok(userServices.GetFullUsers());
         }
 
         [HttpPost]

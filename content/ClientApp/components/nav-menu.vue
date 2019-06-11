@@ -4,6 +4,7 @@
       <router-link to="/">Lorem</router-link>
     </b-navbar-brand>
     <router-link to="/create-post" v-if="name"><p class="nav-button">Create post</p></router-link>
+    <router-link to="/user-management" v-if="admin"><p class="nav-button">User management</p></router-link>
     <b-navbar-nav class="ml-auto dropdown">
       <b-nav-item-dropdown class="text-white" v-if="name" right>
         <!-- Using button-content slot -->
@@ -42,7 +43,7 @@ export default {
       this.$router.push('/');
     }
   },
-  computed: mapState(['name'])
+  computed: mapState(['name', 'admin'])
 };
 </script>
 

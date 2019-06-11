@@ -1,4 +1,3 @@
-using System;
 using AutoMapper;
 using DAL;
 using DAL.Interfaces;
@@ -12,8 +11,8 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Models.ViewModels;
 using Models.ViewModels.Post;
+using Models.ViewModels.User;
 using Services.Interfaces;
 using Services.Services;
 
@@ -102,6 +101,8 @@ namespace Vue2Spa
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<User, GetUserViewModel>();
+                cfg.CreateMap<User, GetUserAdminViewModel>()
+                    .ForMember(d => d.Id, opt => opt.MapFrom(x => x.UserId));
                 cfg.CreateMap<GetUserViewModel, User>();
                 cfg.CreateMap<CreateUserViewModel, User>();
 
