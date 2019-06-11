@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Models.ViewModels;
+using Models.ViewModels.Post;
 using Services.Interfaces;
 using Services.Services;
 
@@ -92,6 +93,8 @@ namespace Vue2Spa
         {
             services.AddScoped<IUserServices, UserServices>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPostServices, PostServices>();
+            services.AddScoped<IPostRepository, PostRepository>();
         }
 
         private static void InitializeMapper()
@@ -101,6 +104,12 @@ namespace Vue2Spa
                 cfg.CreateMap<User, GetUserViewModel>();
                 cfg.CreateMap<GetUserViewModel, User>();
                 cfg.CreateMap<CreateUserViewModel, User>();
+
+                cfg.CreateMap<Post, GetPostViewModel>()
+                    .ForMember(d => d.Owner, opt => opt.MapFrom(x => x.Owner.Name))
+                    .ForMember(d => d.Id, opt => opt.MapFrom(x => x.PostId));
+                cfg.CreateMap<GetPostViewModel, Post>();
+                cfg.CreateMap<CreatePostViewModel, Post>();
             });
         }
     }

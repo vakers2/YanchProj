@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DAL.Interfaces;
 using Entities.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
@@ -33,12 +34,12 @@ namespace DAL.Repositories
 
         public Post GetPost(String id)
         {
-            return context.Posts.SingleOrDefault(x => x.PostId == id);
+            return context.Posts.Include(x => x.Owner).SingleOrDefault(x => x.PostId == id);
         }
 
         public List<Post> GetPosts()
         {
-            return context.Posts.ToList();
+            return context.Posts.Include(x => x.Owner).ToList();
         }
 
         public void UpdatePost(Post post)

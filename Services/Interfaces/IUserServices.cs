@@ -11,6 +11,8 @@ namespace Services.Interfaces
     {
         GetUserViewModel GetUser(string id);
 
+        GetUserViewModel GetUserByLogin(string login);
+
         List<GetUserViewModel> GetUsers();
 
         GetUserViewModel CreateUser(CreateUserViewModel user);

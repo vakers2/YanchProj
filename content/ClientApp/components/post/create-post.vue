@@ -34,7 +34,12 @@ export default {
     createPost: function() {
       if (this.title && this.description) {
         api.post.post.create(this.title, this.description)
-        this.$router.push('/');
+          .then(res => {
+            this.$router.push('/')
+          })
+          .catch(function (error) {
+            alert(error)
+          })
       }
     }
   },

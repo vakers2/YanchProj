@@ -15,5 +15,7 @@ namespace Models.ViewModels.Post
         public DateTime CreationDate { get; set; }
 
         public string Owner { get; set; }
+
+        public string OwnerId { get; set; }
     }
 }

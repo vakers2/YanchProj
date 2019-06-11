@@ -49,6 +49,11 @@ namespace Services.Services
             return Mapper.Map<User, GetUserViewModel>(userRepository.GetUser(id));
         }
 
+        public GetUserViewModel GetUserByLogin(string login)
+        {
+            return Mapper.Map<User, GetUserViewModel>(userRepository.CheckUser(login));
+        }
+
         public List<GetUserViewModel> GetUsers()
         {
             return userRepository.GetUsers().Select(Mapper.Map<User, GetUserViewModel>).ToList();
@@ -72,8 +77,7 @@ namespace Services.Services
         public GetUserViewModel CheckUser(LogInUserViewModel credentials)
         {
             var user = userRepository.CheckUser(credentials.Login);
-            if (user != null && (user.Password == UserHelper.ComputePasswordHash(credentials.Password) &&
-                (user.Status != UserStatus.Pending || user.Status != UserStatus.Blocked)))
+            if (user != null && user.Password == UserHelper.ComputePasswordHash(credentials.Password) && (user.Status != UserStatus.Pending || user.Status != UserStatus.Blocked))
             {
                 return Mapper.Map<GetUserViewModel>(user);
             }

@@ -12,17 +12,24 @@
 
 <script>
 import Post from './post/post';
+import api from '../api'
 
-const posts = [{title: "Hello", description: "Hello world", creationDate: "14:08 13.05.1999", owner: "Vlados"},
-               {title: "Hello", description: "Hello world", creationDate: "13.05.1999", owner: "Vlados"}]
+// const posts = [{title: "Hello", description: "Hello world", creationDate: "14:08 13.05.1999", owner: "Vlados"},
+//                {title: "Hello", description: "Hello world", creationDate: "13.05.1999", owner: "Vlados"}]
 
 export default {
   components: {
     Post
   },
+  created() {
+    api.post.get.getAll()
+    .then(res => {
+      this.posts = res.data
+    })
+  },
   data() {
     return {
-      posts
+      posts: []
     };
   }
 };

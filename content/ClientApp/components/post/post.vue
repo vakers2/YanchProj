@@ -6,13 +6,20 @@
         <p class="owner">by {{post.owner}}</p>
       </div>
       <p class="description">{{post.description}}</p>
-      <div class="footer">{{post.creationDate}}</div>
+      <div class="footer">{{DateString}}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    DateString: function() {
+      var date = new Date(this.post.creationDate)
+
+      return date.toLocaleString() 
+    }
+  },
   props: {
     post: {
       type: Object,

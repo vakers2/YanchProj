@@ -41,7 +41,7 @@ namespace Vue2Spa.Controllers
                 return BadRequest(ModelState);
             }
 
-            return Ok(postServices.CreatePost(post, userServices.GetUser(HttpContext.User.Identity.Name).UserId));
+            return Ok(postServices.CreatePost(post, userServices.GetUserByLogin(HttpContext.User.Identity.Name).UserId));
         }
     }
 }
