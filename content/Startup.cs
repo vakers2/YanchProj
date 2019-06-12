@@ -1,3 +1,4 @@
+using System;
 using AutoMapper;
 using DAL;
 using DAL.Interfaces;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Models.ViewModels.Post;
 using Models.ViewModels.User;
+using Npgsql;
 using Services.Interfaces;
 using Services.Services;
 
@@ -40,9 +42,12 @@ namespace Vue2Spa
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            //var connection = @"Server=(localdb)\mssqllocaldb;Database=Lorem;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = ParseDatabaseUrl();
 
-            var connection = Configuration.GetConnectionString("Default");
+#if DEBUG
+            connection = Configuration.GetConnectionString("Default");
+#endif
+
             services.AddDbContext<Context>
                 (options => options.UseNpgsql(connection, x => x.MigrationsAssembly("DAL")));
 
@@ -112,6 +117,24 @@ namespace Vue2Spa
                 cfg.CreateMap<GetPostViewModel, Post>();
                 cfg.CreateMap<CreatePostViewModel, Post>();
             });
+        }
+
+        private string ParseDatabaseUrl()
+        {
+            var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+            var databaseUri = new Uri(databaseUrl);
+            var userInfo = databaseUri.UserInfo.Split(':');
+
+            var builder = new NpgsqlConnectionStringBuilder
+            {
+                Host = databaseUri.Host,
+                Port = databaseUri.Port,
+                Username = userInfo[0],
+                Password = userInfo[1],
+                Database = databaseUri.LocalPath.TrimStart('/')
+            };
+
+            return builder.ToString();
         }
     }
 }
