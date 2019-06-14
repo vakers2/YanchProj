@@ -21,13 +21,27 @@
 
 <script>
 import NavMenu from './nav-menu';
-import axios from 'axios'
+import axios from 'axios';
+
+import { mapState } from 'vuex';
 
 export default {
   components: {
     'nav-menu': NavMenu
   },
-
+  computed: mapState(['name']),
+  created() {
+    if (!this.name) {
+      this.$router.push('/login');
+    }
+  },
+  watch: {
+    $route: function(to, from) {
+      if (!this.name && to.path != '/login' && to.path != '/signup') {
+        this.$router.push('/login');
+      }
+    }
+  },
   data() {
     return {};
   }
