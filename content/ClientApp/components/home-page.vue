@@ -1,11 +1,19 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8 post-container">
-        <post class="post" v-for="(post, index) in posts" :key="index" :post="post" />
+      <div class="col-sm-1"></div>
+      <div class="col-sm-12">
+        <card
+          class="post"
+          v-for="(post, index) in posts"
+          :key="index"
+          :title="post.title"
+          :description="post.description"
+          :owner="post.owner"
+          :time="post.creationDate"
+        />
       </div>
-      <div class="col-sm-2"></div>
+      <div class="col-sm-1"></div>
     </div>
     <spinner :loading="loading" full></spinner>
   </div>
@@ -13,21 +21,24 @@
 
 <script>
 import Post from './post/post';
-import Spinner from './basic/app-spinner'
+import Card from './basic/app-card';
+import Spinner from './basic/app-spinner';
 
-import api from '../api'
+import api from '../api';
 
 export default {
   components: {
     Post,
-    Spinner
+    Spinner,
+    Card
   },
   created() {
-    api.post.get.getAll()
-    .then(res => {
-      this.posts = res.data
-    })
-    .finally(() => this.loading = false)
+    api.post.get
+      .getAll()
+      .then(res => {
+        this.posts = res.data;
+      })
+      .finally(() => (this.loading = false));
   },
   data() {
     return {
@@ -45,10 +56,6 @@ export default {
 
 .row {
   justify-content: center;
-}
-
-.post-container {
-  max-width: 600px;
 }
 
 .post {

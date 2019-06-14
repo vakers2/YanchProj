@@ -6,20 +6,6 @@
     class="elevation-1"
     :loading="loading"
   >
-    <!-- <template v-slot:headers="props">
-      <tr>
-        <th>
-          <v-checkbox
-            :input-value="props.all"
-            :indeterminate="props.indeterminate"
-            primary
-            hide-details
-            @change="toggleAll"
-          ></v-checkbox>
-        </th>
-        <th v-for="header in props.headers" :key="header.text">{{ header.text }}</th>
-      </tr>
-    </template> -->
     <v-progress-linear v-slot:progress color="blue" indeterminate></v-progress-linear>
     <template v-slot:items="props">
       <tr :active="props.item.selected" @click="props.item.selected = !props.item.selected">
