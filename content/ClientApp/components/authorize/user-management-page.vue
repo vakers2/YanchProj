@@ -2,12 +2,11 @@
   <v-data-table
     :headers="headers"
     :items="users"
-    select-all
     item-key="id"
     class="elevation-1"
     :loading="loading"
   >
-    <template v-slot:headers="props">
+    <!-- <template v-slot:headers="props">
       <tr>
         <th>
           <v-checkbox
@@ -20,7 +19,7 @@
         </th>
         <th v-for="header in props.headers" :key="header.text">{{ header.text }}</th>
       </tr>
-    </template>
+    </template> -->
     <v-progress-linear v-slot:progress color="blue" indeterminate></v-progress-linear>
     <template v-slot:items="props">
       <tr :active="props.item.selected" @click="props.item.selected = !props.item.selected">
@@ -50,6 +49,11 @@ import api from '../../api';
 import AppSelect from '../basic/app-select';
 
 const headers = [
+  {
+    text: '',
+    value: '',
+    sortable: false
+  },
   {
     text: 'Id',
     align: 'left',
@@ -138,7 +142,7 @@ export default {
       headers: headers,
       statusLabels: statusLabels,
       selected: [],
-      select: '',
+      select: null,
       loading: true
     };
   }
