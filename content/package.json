@@ -26,6 +26,7 @@
     "bootstrap-vue": "^2.0.0-rc.18",
     "core-js": "^2.5.3",
     "vue": "^2.6.10",
+    "vue-material": "^1.0.0-beta-11",
     "vue-router": "^3.0.3",
     "vue-server-renderer": "^2.6.10",
     "vue-template-compiler": "^2.6.10",

@@ -42,10 +42,10 @@ namespace Vue2Spa
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            var connection = ParseDatabaseUrl();
-
 #if DEBUG
-            connection = Configuration.GetConnectionString("Default");
+            var connection = Configuration.GetConnectionString("Default");
+#else
+            var connection = ParseDatabaseUrl();
 #endif
 
             services.AddDbContext<Context>

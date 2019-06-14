@@ -1,10 +1,11 @@
-﻿using Entities.Enums;
+﻿using System.Collections.Generic;
+using Entities.Enums;
 
 namespace Models.ViewModels.User
 {
     public class UpdateUserStatusViewModel
     {
-        public string UserId { get; set; }
+        public List<string> UserIds;
 
         public UserStatus Status { get; set; }
     }

@@ -67,13 +67,17 @@ namespace Services.Services
             userRepository.UpdateUser(Mapper.Map<GetUserViewModel, User>(user));
         }
 
-        public void UpdateUserStatus(string id, UserStatus status)
+        public void UpdateUserStatus(UpdateUserStatusViewModel model)
         {
-            var user = userRepository.GetUser(id);
-            if (user != null)
+            var users = userRepository.GetUsers();
+            foreach (var id in model.UserIds)
             {
-                user.Status = status;
-                userRepository.UpdateUser(user);
+                var user = users.SingleOrDefault(x => x.UserId == id);
+                if (user != null)
+                {
+                    user.Status = model.Status;
+                    userRepository.UpdateUser(user);
+                }
             }
         }
 

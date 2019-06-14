@@ -29,6 +29,16 @@ namespace Vue2Spa.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [Route("/user/changeUserStatus")]
+        public IActionResult ChangeUserStatus([FromBody]UpdateUserStatusViewModel model)
+        {
+            userServices.UpdateUserStatus(model);
+
+            return Ok();
+        }
+
+        [HttpPost]
         [Route("/user/create")]
         public IActionResult Create([FromBody]CreateUserViewModel newUser)
         {

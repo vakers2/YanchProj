@@ -7,13 +7,23 @@
             <h4>Create post</h4>
           </v-card-title>
           <v-form>
-            <v-text-field v-model="title" prepend-icon="event_note" name="Title" label="Title"></v-text-field>
+            <v-text-field
+              v-model="title"
+              class="text-input"
+              prepend-icon="event_note"
+              name="Title"
+              label="Title"
+              :rules="titleRules"
+              required
+            ></v-text-field>
             <v-textarea
               name="Description"
               outline
               v-model="description"
               label="Description"
               auto-grow
+              :rules="descriptionRules"
+              :counter="rules.DESCRIPTION_MAX"
             ></v-textarea>
             <v-card-actions>
               <v-btn @click="createPost()" class="btn btn-primary text-white" large block>Create</v-btn>
@@ -28,25 +38,37 @@
 <script>
 import api from '../../api';
 
+const rules = {
+  DESCRIPTION_MAX: 1000
+};
+
 export default {
   name: 'create-post',
   methods: {
     createPost: function() {
       if (this.title && this.description) {
-        api.post.post.create(this.title, this.description)
+        api.post.post
+          .create(this.title, this.description)
           .then(res => {
-            this.$router.push('/')
+            this.$router.push('/');
           })
-          .catch(function (error) {
-            alert(error)
-          })
+          .catch(function(error) {
+            alert(error);
+          });
       }
     }
   },
   data() {
     return {
       title: '',
-      description: ''
+      description: '',
+      titleRules: [v => !!v || 'Title is required'],
+      descriptionRules: [
+        v =>
+          (v.length <= rules.DESCRIPTION_MAX) ||
+          `Description must be less than ${rules.DESCRIPTION_MAX} characters`
+      ],
+      rules: rules
     };
   }
 };
@@ -60,6 +82,10 @@ export default {
 .login-card {
   border: solid 1px black;
   padding: 10px;
+}
+
+.text-input {
+  margin-bottom: 0.5em;
 }
 
 .text-white {

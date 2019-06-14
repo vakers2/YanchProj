@@ -31,8 +31,12 @@ export default {
       getAllUsers (data) {
         return axios.post('Users/GetAllUsers', data)
       },
-      changeUsersStatus (data) {
-        return axios.post('Users/ChangeStatus', data)
+      changeUsersStatus (users, status) {
+        var data = {
+          userIds: users,
+          status
+        }
+        return axios.post('user/changeUserStatus', data)
       }
     }
   },

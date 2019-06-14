@@ -20,7 +20,7 @@ namespace Services.Interfaces
 
         void UpdateUser(GetUserViewModel user);
 
-        void UpdateUserStatus(string id, UserStatus status);
+        void UpdateUserStatus(UpdateUserStatusViewModel model);
 
         GetUserViewModel CheckUser(LogInUserViewModel credentials);
     }

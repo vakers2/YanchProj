@@ -64,6 +64,7 @@ export default {
     #7f7fd5
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-size: 1.5vw;
+  z-index: 1;
 }
 
 @media (max-width: 800px) {

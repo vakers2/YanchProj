@@ -7,6 +7,14 @@
     position: absolute !important;
 }
 
+.md-select-menu {
+    background-color: white; 
+}
+
+.md-input {
+    border-bottom: 1px black solid !important;
+}
+
 .dark { color: #1e0e40; }
 .fuscia { color: #e91e63; }
 
@@ -29,4 +37,8 @@ a, .page-link, .page-link:hover {
 }
 a:hover {
     color: #1e0e40;
+}
+
+.v-progress-linear__bar__indeterminate--active {
+    background-color: #7F7FD5;
 }
