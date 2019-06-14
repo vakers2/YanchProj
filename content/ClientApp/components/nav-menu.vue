@@ -67,6 +67,10 @@ export default {
   z-index: 1;
 }
 
+.navbar a:hover {
+  text-decoration: none;
+}
+
 @media (max-width: 800px) {
   .navbar {
     font-size: 1em;

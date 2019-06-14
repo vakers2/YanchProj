@@ -37,7 +37,8 @@
       <td :colspan="headers.length + 1">
         <div class="status-change">
           <app-select class="select" v-model="select" label="Status" :items="statusLabels"></app-select>
-          <md-button @click="updateStatuses" class="md-raised md-primary">Change</md-button>
+          <md-button @click="updateStatuses" class="md-primary">Change</md-button>
+          <md-button @click="deleteUsers" class="md-raised md-accent">Delete</md-button>
         </div>
       </td>
     </template>
@@ -94,9 +95,13 @@ export default {
         ? this.selected.map(x => x.id)
         : this.users.filter(obj => obj.selected).map(x => x.id);
       if (users.length) {
-        api.user.post.changeUsersStatus(users, this.select).then(res => {
-          this.getUsers();
-        });
+        this.loading = true;
+        api.user.post
+          .changeUsersStatus(users, this.select)
+          .then(res => {
+            this.getUsers();
+          })
+          .finally(() => (this.loading = false));
       }
     },
     getUsers() {
@@ -111,6 +116,20 @@ export default {
           });
         })
         .finally(() => (this.loading = false));
+    },
+    deleteUsers() {
+      var users = this.selected.length
+        ? this.selected.map(x => x.id)
+        : this.users.filter(obj => obj.selected).map(x => x.id);
+      if (users.length) {
+        this.loading = true;
+        api.user.post
+          .deleteUsers(users)
+          .then(res => {
+            this.getUsers();
+          })
+          .finally(() => (this.loading = false));
+      }
     }
   },
   data() {
@@ -134,5 +153,14 @@ export default {
 .status-change {
   display: flex;
   align-items: center;
+}
+
+.status-change .md-accent {
+  margin-left: auto;
+}
+
+.md-accent {
+  color: #fff;
+  background-color: #ff5252;
 }
 </style>

@@ -28,6 +28,9 @@ export default {
 
         return axios.post('Users/UpdateUserAsync', data)
       },
+      deleteUsers (idList) {
+        return axios.post('user/delete', idList)
+      },
       getAllUsers (data) {
         return axios.post('Users/GetAllUsers', data)
       },

@@ -39,6 +39,16 @@ namespace Vue2Spa.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [Route("/user/delete")]
+        public IActionResult Delete([FromBody] List<string> idList)
+        {
+            userServices.DeleteUsers(idList);
+
+            return Ok();
+        }
+
+        [HttpPost]
         [Route("/user/create")]
         public IActionResult Create([FromBody]CreateUserViewModel newUser)
         {

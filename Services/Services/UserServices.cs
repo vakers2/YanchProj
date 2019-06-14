@@ -42,6 +42,19 @@ namespace Services.Services
             }
         }
 
+        public void DeleteUsers(List<string> ids)
+        {
+            var users = userRepository.GetUsers();
+            foreach (var id in ids)
+            {
+                var user = users.SingleOrDefault(x => x.UserId == id);
+                if (user != null)
+                {
+                    userRepository.DeleteUser(user);
+                }
+            }
+        }
+
         public GetUserViewModel GetUser(string id)
         {
             return Mapper.Map<User, GetUserViewModel>(userRepository.GetUser(id));

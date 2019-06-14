@@ -32,7 +32,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(201, 201, 201, 0.568);
+  background-color: rgba(236, 235, 235, 0.288);
 }
 
 .background-blur--full {

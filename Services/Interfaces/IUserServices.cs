@@ -18,6 +18,8 @@ namespace Services.Interfaces
 
         void DeleteUser(string id);
 
+        void DeleteUsers(List<string> ids);
+
         void UpdateUser(GetUserViewModel user);
 
         void UpdateUserStatus(UpdateUserStatusViewModel model);
