@@ -145,7 +145,7 @@ export default {
 
 <style scoped>
 .container {
-  width: 500px;
+  max-width: 500px;
 }
 
 .login-card {
