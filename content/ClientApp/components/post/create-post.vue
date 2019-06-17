@@ -80,7 +80,7 @@ export default {
 }
 
 .login-card {
-  border: solid 1px black;
+  background-color: transparent !important;
   padding: 10px;
 }
 

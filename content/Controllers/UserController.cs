@@ -66,6 +66,19 @@ namespace Vue2Spa.Controllers
             return Ok(user);    
         }
 
+        [HttpGet]
+        [Route("user/check")]
+        public IActionResult CheckIfAuthorized()
+        {
+            GetUserViewModel user = null;
+            if (User.Identity.IsAuthenticated)
+            {
+                user = userServices.GetUserByLogin(User.Identity.Name);
+            }
+
+            return Ok(user);
+        }
+
         [HttpPost]
         [Route("/user/login")]
         public async Task<IActionResult> LogInAsync([FromBody]LogInUserViewModel user)

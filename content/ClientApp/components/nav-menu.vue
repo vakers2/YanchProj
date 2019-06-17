@@ -50,25 +50,14 @@ export default {
 <style scoped>
 .navbar {
   color: #ffffff;
-  background: #7f7fd5; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to left,
-    #91eae4,
-    #86a8e7,
-    #7f7fd5
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to left,
-    #91eae4,
-    #86a8e7,
-    #7f7fd5
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: transparent;
   font-size: 1.5vw;
   z-index: 1;
 }
 
 .navbar a:hover {
   text-decoration: none;
+  
 }
 
 @media (max-width: 800px) {
@@ -82,8 +71,7 @@ export default {
 }
 
 .navbar a {
-  text-decoration: none;
-  color: #ffffff;
+  color: #000000;
 }
 
 .nav-button {

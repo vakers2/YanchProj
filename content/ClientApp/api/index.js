@@ -53,6 +53,9 @@ export default {
       },
       renew (id) {
         return axios.get('Authorization/Renew?id=' + id)
+      },
+      checkIfAuthorized () {
+        return axios.get('user/check')
       }
     },
     post: {

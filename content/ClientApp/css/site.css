@@ -43,3 +43,7 @@ a:hover {
 .v-progress-linear__bar__indeterminate--active {
     background-color: #7F7FD5;
 }
+
+.navbar a {
+    text-decoration: none;
+}

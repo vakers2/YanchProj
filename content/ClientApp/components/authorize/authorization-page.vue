@@ -149,8 +149,8 @@ export default {
 }
 
 .login-card {
-  border: solid 1px black;
   padding: 10px;
+  background: transparent !important;
 }
 
 .text-white {

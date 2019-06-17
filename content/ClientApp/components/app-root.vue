@@ -21,9 +21,13 @@
 
 <script>
 import NavMenu from './nav-menu';
-import axios from 'axios';
+import api from '../api';
 
 import { mapState } from 'vuex';
+
+const actions = {
+  SET_USER_INFO: 'SET_USER_INFO'
+};
 
 export default {
   components: {
@@ -31,6 +35,10 @@ export default {
   },
   computed: mapState(['name']),
   created() {
+    api.authorization.get.checkIfAuthorized().then(res => {
+      this.$store.commit(actions.SET_USER_INFO, res.data);
+    });
+
     if (!this.name) {
       this.$router.push('/login');
     }
@@ -49,4 +57,11 @@ export default {
 </script>
 
 <style>
+body {
+  background-image: radial-gradient(
+    circle farthest-corner at 12.8% 28%,
+    rgba(206, 155, 243, 1) 0%,
+    rgba(142, 229, 247, 1) 90%
+  );
+}
 </style>
