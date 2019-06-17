@@ -35,13 +35,16 @@ export default {
   },
   computed: mapState(['name']),
   created() {
-    api.authorization.get.checkIfAuthorized().then(res => {
-      this.$store.commit(actions.SET_USER_INFO, res.data);
-    });
-
-    if (!this.name) {
-      this.$router.push('/login');
-    }
+    api.authorization.get
+      .checkIfAuthorized()
+      .then(res => {
+        this.$store.commit(actions.SET_USER_INFO, res.data);
+      })
+      .finally(() => {
+        if (!this.name) {
+          this.$router.push('/login');
+        }
+      });
   },
   watch: {
     $route: function(to, from) {
