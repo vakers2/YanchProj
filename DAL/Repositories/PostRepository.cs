@@ -39,7 +39,10 @@ namespace DAL.Repositories
 
         public List<Post> GetPosts()
         {
-            return context.Posts.Include(x => x.Owner).Reverse().ToList();
+            var posts = context.Posts.Include(x => x.Owner).ToList();
+            posts.Reverse();
+
+            return posts;
         }
 
         public void UpdatePost(Post post)
