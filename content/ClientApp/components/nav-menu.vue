@@ -3,15 +3,21 @@
     <b-navbar-brand href="#">
       <router-link to="/">Lorem</router-link>
     </b-navbar-brand>
-    <router-link to="/create-post" v-if="name"><p class="nav-button">Create post</p></router-link>
-    <router-link to="/user-management" v-if="admin"><p class="nav-button">User management</p></router-link>
+    <router-link to="/create-post" v-if="name">
+      <p class="nav-button">Create post</p>
+    </router-link>
+    <router-link to="/user-management" v-if="admin">
+      <p class="nav-button">User management</p>
+    </router-link>
     <b-navbar-nav class="ml-auto dropdown">
       <b-nav-item-dropdown class="text-white" v-if="name" right>
         <!-- Using button-content slot -->
         <template slot="button-content">
           <em>{{name}}</em>
         </template>
-        <b-dropdown-item class="text-black" @click="signOut()" href="#"><em>Sign out</em></b-dropdown-item>
+        <b-dropdown-item class="text-black" @click="signOut" href="#">
+          <em>Sign out</em>
+        </b-dropdown-item>
       </b-nav-item-dropdown>
       <router-link to="/login" v-if="!name">Log in</router-link>
     </b-navbar-nav>
@@ -23,9 +29,11 @@
 import { routes } from '../router/routes';
 import { mapState } from 'vuex';
 
+import api from '../api';
+
 const actions = {
   CLEAR_USER_INFO: 'CLEAR_USER_INFO'
-}
+};
 
 export default {
   data() {
@@ -39,8 +47,10 @@ export default {
       this.collapsed = !this.collapsed;
     },
     signOut: function() {
-      this.$store.commit(actions.CLEAR_USER_INFO);
-      this.$router.push('/');
+      api.authorization.post.signOut().then(res => {
+        this.$store.commit(actions.CLEAR_USER_INFO);
+        this.$router.push('/login');
+      });
     }
   },
   computed: mapState(['name', 'admin'])
@@ -57,7 +67,6 @@ export default {
 
 .navbar a:hover {
   text-decoration: none;
-  
 }
 
 @media (max-width: 800px) {
@@ -71,7 +80,7 @@ export default {
 }
 
 .navbar a {
-  color: #000000;
+  color: #ffffff;
 }
 
 .nav-button {

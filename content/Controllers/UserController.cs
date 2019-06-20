@@ -100,6 +100,7 @@ namespace Vue2Spa.Controllers
         }
 
         [Authorize]
+        [HttpPost]
         [Route("/user/logout")]
         public async Task<IActionResult> LogoutAsync()
         {

@@ -17,6 +17,7 @@ using Models.ViewModels.User;
 using Npgsql;
 using Services.Interfaces;
 using Services.Services;
+using Vue2Spa.Hubs;
 
 namespace Vue2Spa
 {
@@ -41,6 +42,8 @@ namespace Vue2Spa
             // Add framework services.
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSignalR();
 
 #if DEBUG
             var connection = Configuration.GetConnectionString("Default");
@@ -80,6 +83,11 @@ namespace Vue2Spa
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseSignalR(route =>
+            {
+                route.MapHub<ChatHub>("/chat/{id}");
+            });
 
             app.UseMvc(routes =>
             {

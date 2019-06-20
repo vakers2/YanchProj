@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Entities.Enums;
 
@@ -20,5 +21,7 @@ namespace Entities.Entities
 
         [DefaultValue(UserStatus.Pending)]
         public UserStatus Status { get; set; }
+
+        public List<UserChat> UserChat { get; set; }
     }
 }

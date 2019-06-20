@@ -1,4 +1,5 @@
 /* This file should be reviewed. It's not optimal, but it works for now. */
+
 .navbar {
     background: #1e0e40;
 }
@@ -8,20 +9,34 @@
 }
 
 .md-select-menu {
-    background-color: white; 
+    background-color: white;
 }
 
 .md-input {
     border-bottom: 1px black solid !important;
 }
 
-.dark { color: #1e0e40; }
-.fuscia { color: #e91e63; }
+.dark {
+    color: #1e0e40;
+}
 
-.dark-bg { background: #1e0e40; }
+.fuscia {
+    color: #e91e63;
+}
 
-.btn-primary { background: #7F7FD5 !important; border: 1px #7F7FD5 solid !important;}
-.btn-primary:hover { background: #86A8E7 !important; border: 1px #86A8E7 solid !important;}
+.dark-bg {
+    background: #1e0e40;
+}
+
+.btn-primary {
+    background: #7F7FD5 !important;
+    border: 1px #7F7FD5 solid !important;
+}
+
+.btn-primary:hover {
+    background: #86A8E7 !important;
+    border: 1px #86A8E7 solid !important;
+}
 
 .page-item.active .page-link {
     background: #e91e63;

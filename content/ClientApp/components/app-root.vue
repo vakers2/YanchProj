@@ -66,5 +66,6 @@ body {
     rgba(206, 155, 243, 1) 0%,
     rgba(142, 229, 247, 1) 90%
   );
+  background-color: rgba(142, 229, 247, 1);
 }
 </style>

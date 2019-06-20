@@ -48,9 +48,6 @@ export default {
       checkUser () {
         return axios.get('Authorization/CheckAuthorization')
       },
-      signOut () {
-        return axios.get('Authorization/SignOutAsync')
-      },
       renew (id) {
         return axios.get('Authorization/Renew?id=' + id)
       },
@@ -72,6 +69,9 @@ export default {
         }
 
         return axios.post('Authorization/LogInAdmin', data)
+      },
+      signOut () {
+        return axios.post('user/logout')
       }
     }
   },
