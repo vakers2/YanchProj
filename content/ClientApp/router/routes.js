@@ -10,5 +10,5 @@ export const routes = [
   { name: 'signup', path: '/signup', component: AuthorizationPage, props: { isLogin: false } },
   { name: 'create-post', path: '/create-post', component: CreatePost },
   { name: 'user-management', path: '/user-management', component: UserManagement },
-  { name: 'chat', path: '/chat/:userId', component: Chat }
+  { name: 'chat', path: '/chat/:id', component: Chat }
 ]

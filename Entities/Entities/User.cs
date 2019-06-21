@@ -22,6 +22,6 @@ namespace Entities.Entities
         [DefaultValue(UserStatus.Pending)]
         public UserStatus Status { get; set; }
 
-        public List<UserChat> UserChat { get; set; }
+        public List<UserChat> UserChats { get; set; }
     }
 }

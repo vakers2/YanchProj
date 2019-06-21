@@ -91,5 +91,16 @@ export default {
         return axios.post('post/create', data)
       }
     }
+  },
+  chat: {
+    get: {
+      getMessages (id) {
+        var data = {
+          id
+        }
+
+        return axios.get('chat/getMessages', data)
+      }
+    }
   }
 }

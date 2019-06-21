@@ -10,6 +10,7 @@
         :info="message"
       />
       <v-textarea
+        v-model="text"
         class="message-input"
         rows="1"
         color="#0d2882"
@@ -22,6 +23,8 @@
 </template>
 
 <script>
+import { HubConnectionBuilder, LogLevel } from '@aspnet/signalr';
+import api from '../../api';
 import Message from './message';
 
 const messages = [
@@ -49,11 +52,45 @@ export default {
   components: {
     Message
   },
+  created() {
+    this.connection = new this.$signalR.HubConnectionBuilder()
+      .withUrl('/chat/' + this.$route.params.id)
+      .configureLogging(this.$signalR.LogLevel.Error)
+      .build();
+
+    api.chat.get.getMessages(this.$route.params.id).then(res => {
+      this.messages = res.data;
+    });
+  },
+  mounted() {
+    this.connection.start();
+
+    this.connection.invoke('ConnectToChatAsync', this.$route.params.id)
+
+    this.connection.on('message', data => {
+      this.messages.push(data);
+    });
+  },
+  methods: {
+    sendMessage() {
+      this.connection.invoke(
+        'SendMessageAsync',
+        this.$route.params.id,
+        this.name,
+        this.text
+      );
+
+      this.text = '';
+    }
+  },
   data() {
     return {
-      messages: messages
+      connection: null,
+      messages: messages,
+      text: ''
     };
-  }
+  },
+  computed: mapState(['name'])
 };
 </script>
 

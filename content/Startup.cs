@@ -17,7 +17,7 @@ using Models.ViewModels.User;
 using Npgsql;
 using Services.Interfaces;
 using Services.Services;
-using Vue2Spa.Hubs;
+using Services.Hubs;
 
 namespace Vue2Spa
 {
